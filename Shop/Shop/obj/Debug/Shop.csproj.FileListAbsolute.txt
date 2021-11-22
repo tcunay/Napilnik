@@ -1,0 +1,2 @@
+D:\Git Repository\NapilnikShop\Shop\Shop\obj\Debug\Shop.csprojAssemblyReference.cache
+D:\Git Repository\NapilnikShop\Shop\Shop\obj\Debug\Shop.csproj.CoreCompileInputs.cache
