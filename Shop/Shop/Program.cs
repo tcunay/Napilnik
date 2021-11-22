@@ -13,11 +13,7 @@ namespace Shop
         private void Start()
         {
             _shop.AddToWarehouse(new GoodCell(_iPhone12, 10), new GoodCell(_iPhone11, 1));
-
-            foreach (var goodCell in _shop.Warehouse.Goods)
-            {
-                Console.WriteLine($"Товар: {goodCell.Good.Name}, Кол-во: {goodCell.Count}");
-            }
+            
             ShowGoods(_shop.Warehouse.Goods);
 
             _shop.AddToCart(new GoodCell(_iPhone12, 4), new GoodCell(_iPhone11, 3));
