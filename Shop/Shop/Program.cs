@@ -14,11 +14,11 @@ namespace Shop
         {
             _shop.AddToWarehouse(new GoodCell(_iPhone12, 10), new GoodCell(_iPhone11, 1));
             
-            ShowGoods(_shop.Warehouse.Goods);
+            ShowGoods(_shop.Warehouse.Cells);
 
             _shop.AddToCart(new GoodCell(_iPhone12, 4), new GoodCell(_iPhone11, 3));
             
-            ShowGoods(_shop.Cart.Goods);
+            ShowGoods(_shop.Cart.Cells);
         }
 
         private void ShowGoods(IEnumerable<GoodCell> cells)
@@ -71,13 +71,13 @@ namespace Shop
 
     public interface IReadonlyCellContainer
     {
-        IEnumerable<GoodCell> Goods { get; }
+        IEnumerable<GoodCell> Cells { get; }
     }
 
     public class GoodCellContainer : IReadonlyCellContainer
     {
         private readonly List<GoodCell> _goods = new List<GoodCell>();
-        public IEnumerable<GoodCell> Goods => _goods;
+        public IEnumerable<GoodCell> Cells => _goods;
 
         public void Add(GoodCell goodCell)
         {
