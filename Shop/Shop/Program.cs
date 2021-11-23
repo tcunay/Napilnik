@@ -32,20 +32,23 @@ namespace Shop
 
     public class Shop
     {
+        private readonly GoodCellContainer _warehouse;
+        private readonly GoodCellContainer _cart;
+        
         public Shop(GoodCellContainer warehouse, GoodCellContainer cart)
         {
-            Warehouse = warehouse ?? throw new InvalidOperationException();
-            Cart = cart ?? throw new InvalidOperationException();
+            _warehouse = warehouse ?? throw new InvalidOperationException();
+            _cart = cart ?? throw new InvalidOperationException();
         }
 
-        public GoodCellContainer Warehouse { get; private set; }
-        public GoodCellContainer Cart { get; private set; }
+        public IReadonlyCellContainer Warehouse => _warehouse;
+        public IReadonlyCellContainer Cart => _cart;
 
         public void AddToWarehouse(params GoodCell[] cells)
         {
             foreach (var cell in cells)
             {
-                Warehouse.Add(cell);
+                _warehouse.Add(cell);
             }
         }
 
@@ -55,8 +58,8 @@ namespace Shop
             {
                 try
                 {
-                    Warehouse.Remove(cell);
-                    Cart.Add(cell);
+                    _warehouse.Remove(cell);
+                    _cart.Add(cell);
                 }
                 catch (Exception exception)
                 {
@@ -66,7 +69,12 @@ namespace Shop
         }
     }
 
-    public class GoodCellContainer
+    public interface IReadonlyCellContainer
+    {
+        IEnumerable<GoodCell> Goods { get; }
+    }
+
+    public class GoodCellContainer : IReadonlyCellContainer
     {
         private readonly List<GoodCell> _goods = new List<GoodCell>();
         public IEnumerable<GoodCell> Goods => _goods;
