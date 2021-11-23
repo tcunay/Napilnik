@@ -134,7 +134,7 @@ namespace Shop
             if (cell.Good.Name != Good.Name)
                 throw new InvalidOperationException();
             if (cell.Count > Count)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Нет нужного кол-ва товара на складе");
 
             Count -= cell.Count;
         }
