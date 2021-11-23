@@ -147,6 +147,6 @@ namespace Shop
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 }
